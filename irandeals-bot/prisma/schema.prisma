@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Country {
+  id     Int     @id @default(autoincrement())
+  name   String  @unique
+  code   String? @db.VarChar(5)
+  active Boolean @default(true)
+  cities City[]
+}
+
+model City {
+  id        Int     @id @default(autoincrement())
+  name      String  @db.VarChar(100)
+  countryId Int
+  active    Boolean @default(true)
+  country   Country @relation(fields: [countryId], references: [id])
+
+  @@unique([name, countryId])
+}
+
+model Business {
+  id         String    @id @default(uuid())
+  telegramId BigInt    @unique
+  name       String    @db.VarChar(200)
+  country    String    @db.VarChar(100)
+  city       String    @db.VarChar(100)
+  category   String    @db.VarChar(50)
+  phone      String?   @db.VarChar(50)
+  website    String?   @db.VarChar(200)
+  instagram  String?   @db.VarChar(100)
+  status     String    @default("pending") // pending | approved | rejected | banned | paused
+  verified   Boolean   @default(false)
+  createdAt  DateTime  @default(now())
+  approvedAt DateTime?
+  deals      Deal[]
+}
+
+model Deal {
+  id            String        @id @default(uuid())
+  businessId    String
+  title         String        @db.VarChar(200)
+  description   String
+  imageUrl      String?       @db.VarChar(500)
+  targetCountry String        @db.VarChar(100)
+  targetCity    String?       @db.VarChar(100)
+  expiresAt     DateTime
+  active        Boolean       @default(true)
+  createdAt     DateTime      @default(now())
+  broadcastAt   DateTime?
+  business      Business      @relation(fields: [businessId], references: [id])
+  deliveries    DealDelivery[]
+  reports       DealReport[]
+}
+
+model Subscriber {
+  id         String         @id @default(uuid())
+  telegramId BigInt         @unique
+  cities     String[]
+  categories String[]
+  frequency  String         @default("instant") // instant | daily | weekly
+  language   String         @default("en")      // en | fa
+  active     Boolean        @default(true)
+  createdAt  DateTime       @default(now())
+  deliveries DealDelivery[]
+  reports    DealReport[]
+}
+
+model DealReport {
+  id           String     @id @default(uuid())
+  dealId       String
+  subscriberId String
+  reason       String?
+  createdAt    DateTime   @default(now())
+  deal         Deal       @relation(fields: [dealId], references: [id])
+  subscriber   Subscriber @relation(fields: [subscriberId], references: [id])
+
+  @@unique([dealId, subscriberId])
+}
+
+model DealDelivery {
+  id           String     @id @default(uuid())
+  dealId       String
+  subscriberId String
+  sentAt       DateTime   @default(now())
+  channel      String     // direct | daily_digest | weekly_digest
+  deal         Deal       @relation(fields: [dealId], references: [id])
+  subscriber   Subscriber @relation(fields: [subscriberId], references: [id])
+}
+
+model AdminLog {
+  id              String   @id @default(uuid())
+  adminTelegramId BigInt
+  action          String   // approve | reject | ban | feature
+  targetType      String   // business | deal
+  targetId        String
+  note            String?
+  createdAt       DateTime @default(now())
+}
+
+model AdminUser {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String   // bcrypt hash
+  createdAt DateTime @default(now())
+}

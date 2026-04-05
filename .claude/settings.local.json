@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l /Users/hamed.afzali/Desktop/Repos/IranDeals/irandeals-bot/src/bot/handlers/*.ts)",
+      "Bash(wc -l /Users/hamed.afzali/Desktop/Repos/IranDeals/irandeals-bot/src/api/routes/*.ts)",
+      "Bash(wc -l /Users/hamed.afzali/Desktop/Repos/IranDeals/irandeals-bot/src/bot/jobs/*.ts)",
+      "Bash(wc -l /Users/hamed.afzali/Desktop/Repos/IranDeals/irandeals-bot/src/bot/utils/*.ts)",
+      "Bash(wc -l /Users/hamed.afzali/Desktop/Repos/IranDeals/irandeals-admin/src/pages/*.tsx)",
+      "Bash(wc -l /Users/hamed.afzali/Desktop/Repos/IranDeals/irandeals-admin/src/*.tsx /Users/hamed.afzali/Desktop/Repos/IranDeals/irandeals-admin/src/api/*.ts /Users/hamed.afzali/Desktop/Repos/IranDeals/irandeals-admin/src/hooks/*.ts)",
+      "Bash(wc -l /Users/hamed.afzali/Desktop/Repos/IranDeals/irandeals-bot/src/bot/handlers/*.ts /Users/hamed.afzali/Desktop/Repos/IranDeals/irandeals-bot/src/bot/jobs/*.ts /Users/hamed.afzali/Desktop/Repos/IranDeals/irandeals-bot/src/api/routes/*.ts /Users/hamed.afzali/Desktop/Repos/IranDeals/irandeals-admin/src/pages/*.tsx)",
+      "Bash(grep -n \"DataTable\\\\|Recharts\\\\|recharts\" /Users/hamed.afzali/Desktop/Repos/IranDeals/irandeals-admin/src/pages/*.tsx)"
+    ]
+  }
+}
