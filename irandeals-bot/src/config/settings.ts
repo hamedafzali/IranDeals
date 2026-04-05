@@ -3,8 +3,11 @@ import { z } from 'zod'
 
 const schema = z.object({
   BOT_TOKEN: z.string().min(1),
-  DATABASE_URL: z.string().url(),
-  REDIS_URL: z.string().default('redis://localhost:6379'),
+  DATABASE_URL: z
+    .string()
+    .url()
+    .default('postgresql://irandeals:irandeals@db:5432/irandeals'),
+  REDIS_URL: z.string().default('redis://redis:6379/0'),
   ADMIN_TELEGRAM_IDS: z.string().default(''),
   PUBLIC_CHANNEL_ID: z.string().optional(),
   // Set WEBHOOK_URL to enable webhook mode; omit for long-polling (development)
