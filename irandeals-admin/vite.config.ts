@@ -8,6 +8,6 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 5173,
-    proxy: { '/api': { target: 'http://bot:3000', changeOrigin: true } },
+    proxy: { '/api': { target: 'http://bot:4000', changeOrigin: true } },
   },
 })

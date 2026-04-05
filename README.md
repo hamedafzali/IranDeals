@@ -30,7 +30,7 @@ docker compose up --build
 
 Services:
 
-- Bot API: `http://localhost:3000`
+- Bot API: `http://localhost:4000`
 - Admin panel: `http://localhost:5173`
 - PostgreSQL: `localhost:5432`
 - Redis: `localhost:6379`
