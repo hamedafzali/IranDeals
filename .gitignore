@@ -13,6 +13,8 @@ Thumbs.db
 .vite/
 *.tsbuildinfo
 
+.claude
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
