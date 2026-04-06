@@ -7,8 +7,6 @@ services:
       - BOT_TOKEN
       - ADMIN_TELEGRAM_IDS
       - PUBLIC_CHANNEL_ID
-      - WEBHOOK_URL
-      - WEBHOOK_SECRET
       - DATABASE_URL
       - REDIS_URL
       - JWT_SECRET
@@ -16,12 +14,8 @@ services:
       - API_PORT
       - NODE_ENV
       - ADMIN_UI_PASSWORD
-      - ADMIN_ORIGIN
       - MAX_DEALS_PER_WEEK
       - MAX_INSTANT_PER_DAY
-      - MAX_DIGEST_DEALS
-      - MAX_WEEKLY_DIGEST_DEALS
-      - DEAL_DEFAULT_TTL_DAYS
     ports:
       - "4000:3000"
     depends_on:
